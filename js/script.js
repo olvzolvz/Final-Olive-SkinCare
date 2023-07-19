@@ -1,4 +1,4 @@
-// toggle class active
+// toggle class active untuk humburger menu
 
 const navbarNav = document.querySelector(".navbar-nav");
 
@@ -6,6 +6,15 @@ const navbarNav = document.querySelector(".navbar-nav");
 
 document.querySelector("#hamburger-menu").onclick = () => {
   navbarNav.classList.toggle("active");
+};
+
+// toggle class active untuk search form
+const searchForm = document.querySelector(".search-form");
+const searchBox = document.querySelector("#search-box");
+
+document.querySelector("#search-button").onclick = () => {
+  searchForm.classList.toggle("active");
+  searchBox.focus();
 };
 
 // klik di luar sidebar untuk menghilangkan nav
