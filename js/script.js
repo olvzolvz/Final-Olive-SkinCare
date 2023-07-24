@@ -12,27 +12,61 @@ document.querySelector("#hamburger-menu").onclick = () => {
 const searchForm = document.querySelector(".search-form");
 const searchBox = document.querySelector("#search-box");
 
-document.querySelector("#search-button").onclick = () => {
+document.querySelector("#search-button").onclick = (e) => {
   searchForm.classList.toggle("active");
   searchBox.focus();
+  e.preventDefault();
 };
 
-// klik di luar sidebar untuk menghilangkan nav
-const hamburger = document.querySelector("#hamburger-menu");
+// toggle class active untuk Shoping-Cart
+const shoppingCart = document.querySelector(".shopping-cart");
+
+document.querySelector("#shopping-cart-button").onclick = (e) => {
+  shoppingCart.classList.toggle("active");
+  e.preventDefault();
+};
+
+// klik di luar Elemen
+const hm = document.querySelector("#hamburger-menu");
+const sb = document.querySelector("#search-button");
+const sc = document.querySelector("#shopping-cart-button");
 
 document.addEventListener("click", function (e) {
-  if (!hamburger.contains(e.target) && !navbarNav.contains(e.target)) {
+  if (!hm.contains(e.target) && !navbarNav.contains(e.target)) {
     navbarNav.classList.remove("active");
+  }
+
+  if (!sb.contains(e.target) && !searchForm.contains(e.target)) {
+    searchForm.classList.remove("active");
+  }
+
+  if (!sc.contains(e.target) && !shoppingCart.contains(e.target)) {
+    shoppingCart.classList.remove("active");
   }
 });
 
-// CARA BACA: kita panggil conts hamburger, tolong carikaan saya element,
-// yang nama selektornya adalah tanda pagar menu, yg idnya hamburger menu,,
-// jd saya akan ngasi event listner ketika di klick di luar sidebar,
-//   menu akan hilang dari sidebar.
-//   ketika dokumenya Documennya.eventlistner, ketika klik di mana aja, di luar halaman
-//   kita pakai function supaya bisa ambil eventnnya, kemudian kurum kurawal,
-// jika klik di luar navbar.contains, yang di klik maus qta dan bukan navbar na konteins e target,
-//   (if (!hamburger.contains(e.target) && !navbarNav.contains(e.target)))
-// nabar na class list REMOVE,, yang di remove kelas active
-// navbarNav.classList.remove("active");
+// Modal Box
+
+const itemDetailModal = document.querySelector("#item-detail-modal");
+const itemDetailButtons = document.querySelectorAll(".item-detail-button");
+
+itemDetailButtons.forEach((btn) => {
+  btn.onclick = (e) => {
+    itemDetailModal.style.display = "flex";
+    e.preventDefault();
+  };
+});
+
+// Klik tombol closed Modal
+
+document.querySelector(".modal .close-icon").onclick = (e) => {
+  itemDetailModal.style.display = "none";
+  e.preventDefault();
+};
+
+// Klik di luar modal
+window.onclick = (e) => {
+  if (e.target === itemDetailModal) {
+    itemDetailModal.style.display = "none";
+  }
+};
